@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>8th Street Station</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="favicon.png">
+    <!-- head-end -->
+  </head>
+  <body>
+    <header>
+        <img src="vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px;">
+        <h6 style="
+                width: 100%;
+                position: relative;
+                display: inline-block;
+                text-align: center;">8th Street Station</h6>
+        <img src="vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px; opacity: 0">
+    </header>
+    <main>
+        <section class="instruction-card"
+            style="
+                width: 100%;
+                position: relative;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.02), 0px 6px 12px rgba(0, 0, 0, 0.03);
+                border-radius: 16px;
+                background-color: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px 24px;
+                gap: 12px;
+                text-align: left;
+            ">
+            <div class="card-header" style="
+            flex: 1;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;">
+                <img src="instruction-icon.png" alt="Instruction Icon" style="width: 28px; height: 28px;">
+                <h6 style="
+                display: inline-block;
+                text-align: left;">
+                Instruction</h6>
+                
+            </div>
+            <small style="
+                text-align: left;
+                display: inline-block;
+                ">Complete your journey by checking in all locations below. You need to answer a question for each location to check-in. We save your journey and there is no time limit, so feel free to explore on your pace.</small>
+        </section>
+
+        <ul class="location-list">
+
+            <section class="location-card" id="3rd-location-1">
+                <img class="card-img" src="8th-street/1.webp" alt="First Canadian Centre">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">01. AMEC Building (2nd floor)</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">801 6 Ave SW, Calgary, AB T2P
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-1" href="#">Check In</button>
+                <!--This div class="checkin-status" will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-2">
+                <img class="card-img" src="8th-street/2.webp" alt="Brookfield Place">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">02. Brookfield Place</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">225 6 Ave SW, Calgary, AB T2P 3S9
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-2" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-3">
+                <img class="card-img" src="8th-street/3.webp" alt="Calgary Co-op World of Whisky">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">03. Corporate Building</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">734 7 Ave SW, Calgary, AB T2P 3P8
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-3" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-4">
+                <img class="card-img" src="8th-street/4.webp" alt="Calgary Place II Building">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">04. Copy Repro Inc.</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">600 6 Ave SW Ste 280, Calgary, AB T2P 0S5
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-4" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-5">
+                <img class="card-img" src="8th-street/5.webp" alt="Stock Exchange Tower">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">05. Chevron Plaza (2nd floor)</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">3724 11 Ave SW, Calgary, AB T2R 0E4
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-5" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-6">
+                <img class="card-img" src="8th-street/6.webp" alt="Fifth Avenue Place Building">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">06. Roslyn Building</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">407 Third St SW, Calgary AB T2P 4X6
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-6" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-7">
+                <img class="card-img" src="8th-street/7.webp" alt="Stephen Lowe Art Gallery">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">0.7 Roslyn Building</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">407 Third St SW, Calgary AB T2P 4X6
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-7" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-8">
+                <img class="card-img" src="8th-street/8.webp" alt="Stephen Avenue Place">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">0.8 Pacific Parkade Building</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">724 6 Ave SW, Calgary, AB T2P 0X6
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-8" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-9">
+                <img class="card-img" src="8th-street/9.webp" alt="Devonian Gardens ">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">09. Devonian Gardens</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">317 7 Ave SW 4 floor, Calgary, AB T2P 0W4
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-9" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+            <section class="location-card" id="3rd-location-10">
+                <img class="card-img" src="8th-street/10.webp" alt="Calgary Tower">
+                <div class="card-text">
+                    <h6 class="location-name" style="
+                        text-align: left;
+                        display: inline-block;
+                    ">10. Aquitain Tower</h6>
+                    <small class="location-address" style="
+                        text-align: left;
+                        display: inline-block;">540 5 Ave SW, Calgary, AB T2P 0M2
+                    </small>
+                </div>
+                <button class="checkin-button" id="check-in-10" href="#">Check In</button>
+                <!--This div will be showed after user answers the question correctly-->
+                <div class="checkin-status" style="display: none;">
+                    <img src="vuesax/bold/tick-circle.png" alt="Checkmark Icon" style="width: 24px; height: 24px;">
+                    <p style="color: #5CA4AC;">Checked-in</p>
+                </div>
+            </section>
+
+
+        </ul>
+    <footer style="
+        width: 100%;
+        padding: 16px 0;
+        border-top: 1px solid #ededed;
+        text-align: center;
+        color: #263d89;
+    ">
+        <img src="footer.png" alt="Logo" style="width: 100px; height: auto;">
+    </footer>
