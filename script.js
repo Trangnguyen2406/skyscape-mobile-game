@@ -86,8 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (selectedAnswer.classList.contains("correct-answer")) {
-                    // Mark this question as completed
+                    // Mark this question as completed AND save this station's total question count
                     localStorage.setItem(`${questionPage}-question-${q}`, "completed");
+                    localStorage.setItem(`${questionPage}-total`, totalQuestions);
 
                     // Check if there is another uncompleted question left
                     const nextUncompleted = getNextUncompletedQuestion();
