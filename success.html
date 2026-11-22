@@ -41,7 +41,7 @@
                 Next Question
             </button>
 
-            <button onclick="location.href='index.html'" class="secondary-button">
+            <button id="explore-button" class="secondary-button">
                 Explore other locations
             </button>
         </ul>
@@ -49,35 +49,42 @@
     <script>
         window.addEventListener("load", () => {
 
-            const sound = new Audio("./sounds/correct_answer.mp3");
-            sound.play();
+    const sound = new Audio("./sounds/correct_answer.mp3");
+    sound.play();
 
-            const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
 
-            const page = params.get("page");
-            const q = Number(params.get("q"));
+    const page = params.get("page");
+    const q = Number(params.get("q"));
+    const station = params.get("station");
 
-            const nextButton = document.getElementById("next-question-button");
-
-            if (nextButton) {
-
-                if (q === 10) {
-
-                    nextButton.textContent = "Complete Journey";
-
-                    nextButton.addEventListener("click", () => {
-                        window.location.href = "journey-completed.html";
-                    });
-
-                } else {
-
-                    nextButton.addEventListener("click", () => {
-                        window.location.href = `${page}?q=${q + 1}`;
-                    });
-
-                }
-            }
+    // Explore Other Locations button
+    document.getElementById("explore-button")
+        .addEventListener("click", () => {
+            window.location.href = station;
         });
-        </script>
+
+        const nextButton = document.getElementById("next-question-button");
+
+        if (nextButton) {
+
+            if (q === 10) {
+
+                nextButton.textContent = "Complete Journey";
+
+                nextButton.addEventListener("click", () => {
+                    window.location.href = "journey-completed.html";
+                });
+
+            } else {
+
+                nextButton.addEventListener("click", () => {
+                    window.location.href = `${page}?q=${q + 1}`;
+                });
+
+            }
+        }
+    });
+    </script>
     </body>
     </html>

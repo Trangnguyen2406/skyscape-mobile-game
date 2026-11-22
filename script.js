@@ -1,5 +1,11 @@
 const q = new URLSearchParams(window.location.search).get("q") || "1";
 
+localStorage.setItem(
+    `${window.location.pathname.split("/").pop()}-question-${q}`,
+    "visited"
+);
+
+
 // Hide all questions
 document.querySelectorAll(".question-container").forEach(question => {
     question.style.display = "none";
@@ -43,6 +49,18 @@ document.querySelectorAll(".answer").forEach(button => {
     });
 });
 
+let stationPage = "";
+
+if (window.location.pathname.includes("cityhall-question")) {
+    stationPage = "cityhall.html";
+}
+else if (window.location.pathname.includes("3rd-street-question")) {
+    stationPage = "3rd-street.html";
+}
+else if (window.location.pathname.includes("8th-street-question")) {
+    stationPage = "8th-street.html";
+}
+
 document.querySelectorAll(".submit-answer").forEach(button => {
     button.addEventListener("click", () => {
 
@@ -53,18 +71,19 @@ document.querySelectorAll(".submit-answer").forEach(button => {
 
         if (selectedAnswer.classList.contains("correct-answer")) {
 
-            // Last question
             if (q === "10") {
                 window.location.href = "journey-completed.html";
             } else {
                 window.location.href =
-                `success.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}`;
+                `success.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&station=${stationPage}`;
             }
 
         } else {
 
             window.location.href =
-                `fail.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}`;
+                `fail.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&station=${stationPage}`;
+
         }
+
     });
 });
