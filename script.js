@@ -52,26 +52,14 @@ document.querySelectorAll(".submit-answer").forEach(button => {
         }
 
         if (selectedAnswer.classList.contains("correct-answer")) {
+
             window.location.href = "success.html";
+
         } else {
-            window.location.href = "fail.html";
-        }
 
-    });
-});
+            window.location.href =
+                `fail.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}`;
 
-document.querySelectorAll(".submit-answer").forEach(button => {
-    button.addEventListener("click", () => {
-
-        if (!selectedAnswer) {
-            alert("Please select an answer first.");
-            return;
-        }
-
-        if (selectedAnswer.classList.contains("correct-answer")) {
-            window.location.href = "success.html";
-        } else {
-            window.location.href = "fail.html";
         }
     });
 });
