@@ -53,13 +53,17 @@ document.querySelectorAll(".submit-answer").forEach(button => {
 
         if (selectedAnswer.classList.contains("correct-answer")) {
 
-            window.location.href = "success.html";
+            // Last question
+            if (q === "10") {
+                window.location.href = "journey-completed.html";
+            } else {
+                window.location.href = "success.html";
+            }
 
         } else {
 
             window.location.href =
                 `fail.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}`;
-
         }
     });
 });
