@@ -27,3 +27,35 @@ const title = document.getElementById("question-title");
 if (title) {
     title.textContent = `Question ${q}`;
 }
+
+let selectedAnswer = null;
+
+document.querySelectorAll(".answer").forEach(button => {
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".answer").forEach(btn => {
+            btn.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+
+        selectedAnswer = button;
+    });
+});
+
+document.querySelectorAll(".submit-answer").forEach(button => {
+    button.addEventListener("click", () => {
+
+        if (!selectedAnswer) {
+            alert("Please select an answer first.");
+            return;
+        }
+
+        if (selectedAnswer.classList.contains("correct-answer")) {
+            window.location.href = "success.html";
+        } else {
+            window.location.href = "fail.html";
+        }
+
+    });
+});
