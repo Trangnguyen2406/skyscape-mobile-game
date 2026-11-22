@@ -62,7 +62,7 @@
         <ul class="location-list">
 
             <section class="location-card" id="ch-location-1">
-                <img class="card-img" src="City-Hall/1.jpg" alt="Calgary Municipal Building">
+                <img class="card-img" src="./images/city_hall/1.jpg" alt="Calgary Municipal Building">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -82,7 +82,7 @@
             </section>
 
             <section class="location-card" id="ch-location-2">
-                <img class="card-img" src="City-Hall/2.jpg" alt="Calgary Municipal Building">
+                <img class="card-img" src="./images/city_hall/2.jpg"  alt="Calgary Municipal Building">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -102,7 +102,7 @@
             </section>
 
             <section class="location-card" id="ch-location-3">
-                <img class="card-img" src="City-Hall/3.jpg" alt="Calgary Municipal Building">
+                <img class="card-img" src="./images/city_hall/3.jpg"  alt="Calgary Municipal Building">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -122,7 +122,7 @@
             </section>
 
             <section class="location-card" id="ch-location-4">
-                <img class="card-img" src="City-Hall/4.jpg" alt="Art Commons">
+                <img class="card-img" src="./images/city_hall/4.jpg"  alt="Art Commons">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -142,7 +142,7 @@
             </section>
 
             <section class="location-card" id="ch-location-5">
-                <img class="card-img" src="City-Hall/5.jpg" alt="Art Commons">
+                <img class="card-img" src="./images/city_hall/5.jpg"  alt="Art Commons">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -162,7 +162,7 @@
             </section>
 
             <section class="location-card" id="ch-location-6">
-                <img class="card-img" src="City-Hall/6.jpg" alt="XXX">
+                <img class="card-img" src="./images/city_hall/6.jpg"  alt="XXX">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -182,12 +182,12 @@
             </section>
 
             <section class="location-card" id="ch-location-7">
-                <img class="card-img" src="City-Hall/7.jpg" alt="Tower Center">
+                <img class="card-img" src="./images/city_hall/7.jpg"  alt="Tower Center">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
                         display: inline-block;
-                    ">0.7 Tower Center</h6>
+                    ">07. Tower Center</h6>
                     <small class="location-address" style="
                         text-align: left;
                         display: inline-block;">131 9 Ave SW, Calgary, AB T2P 1K1
@@ -202,12 +202,12 @@
             </section>
 
             <section class="location-card" id="ch-location-8">
-                <img class="card-img" src="City-Hall/8.jpg" alt="Tower Center">
+                <img class="card-img" src="./images/city_hall/8.jpg"  alt="Tower Center">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
                         display: inline-block;
-                    ">0.8 Tower Center</h6>
+                    ">08. Tower Center</h6>
                     <small class="location-address" style="
                         text-align: left;
                         display: inline-block;">131 9 Ave SW, Calgary, AB T2P 1K1
@@ -222,7 +222,7 @@
             </section>
 
             <section class="location-card" id="ch-location-9">
-                <img class="card-img" src="City-Hall/9.jpg" alt="XXX">
+                <img class="card-img" src="./images/city_hall/9.jpg"  alt="XXX">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -242,7 +242,7 @@
             </section>
 
             <section class="location-card" id="ch-location-10">
-                <img class="card-img" src="City-Hall/10.jpg" alt="Calgary Tower">
+                <img class="card-img" src="./images/city_hall/10.jpg"  alt="Calgary Tower">
                 <div class="card-text">
                     <h6 class="location-name" style="
                         text-align: left;
@@ -274,3 +274,22 @@
         <img src="./images/footer.png" alt="Logo" style="width: 100px; height: auto; cursor: pointer;">
     </a>
     </footer>
+    <script>
+
+    for(let i = 1; i <= 10; i++){
+
+        const button = document.getElementById(`checkin-${i}`);
+
+        if(
+            localStorage.getItem(
+                `cityhall-question.html-question-${i}`
+            ) === "completed"
+        ){
+            button.classList.add("completed");
+        }
+
+    }
+
+    </script>
+    </body>
+    </html>
