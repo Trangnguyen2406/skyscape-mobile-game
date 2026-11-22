@@ -7,16 +7,18 @@
 		<title>Question 1</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="favicon.png">
+        <script src="script.js" defer></script>
     <!-- head-end -->
   </head>
   <body>
     <header>
-        <img src="vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px;">
+        <a href="3rd-street.html">
+        <img src="./images/temp/arrow-left.png" alt="Arrow Icon" style="width: 24px; height: 24px;"></a>
         <!--This text should be changed to reflect the current question number-->
-        <h6 style="
-                display: inline-block;
-                text-align: center;">Question 1</h6>
-        <img src="vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px; opacity: 0">
+        <h6 id="question-title" style="
+        display: inline-block;
+        text-align: center;">Question 1</h6>
+        <img src="./images/temp/arrow-left.png" alt="Arrow Icon" style="width: 24px; height: 24px; opacity: 0">
         
     </header>
 
@@ -28,32 +30,32 @@
                 position: relative;
                 overflow: hidden;">
             <!--This image should be changed to reflect the current question number-->
-            <img id="3rd-question-1-img" src="3rd-street/1.jpeg" alt="First Canadian Centre">
+            <img id="question-1-img" class="question-image" src="./images/3rd-street/optimized/1.jpg" alt="First Canadian Centre">
 
-            <!--Image for questions 2-10
-            <img id="3rd-question-2-img" src="3rd-street/2.jpeg" alt="Brookfield Place">
+          
+            <img id="question-2-img" class="question-image" src="./images/3rd-street/optimized/2.jpg" alt="Brookfield Place">
 
-            <img id="3rd-question-3-img" src="3rd-street/3.jpeg" alt=" Calgary Co-op World of Whisky">
+            <img id="question-3-img" class="question-image" src="./images/3rd-street/optimized/3.jpg" alt=" Calgary Co-op World of Whisky">
 
-            <img id="3rd-question-4-img" src="3rd-street/4.jpeg" alt="Calgary Place II Building">
+            <img id="question-4-img" class="question-image" src="./images/3rd-street/optimized/4.jpg" alt="Calgary Place II Building">
 
-            <img id="3rd-question-5-img" src="3rd-street/5.jpeg" alt="Stock Exchange Tower">
+            <img id="question-5-img" class="question-image" src="./images/3rd-street/optimized/5.jpg" alt="Stock Exchange Tower">
 
-            <img id="3rd-question-6-img" src="3rd-street/6.jpeg" alt="Fifth Avenue Place Building">
+            <img id="question-6-img" class="question-image" src="./images/3rd-street/optimized/6.jpg" alt="Fifth Avenue Place Building">
 
-            <img id="3rd-question-7-img" src="3rd-street/7.jpeg" alt="Stephen Lowe Art Gallery">
+            <img id="question-7-img" class="question-image" src="./images/3rd-street/optimized/7.jpg" alt="Stephen Lowe Art Gallery">
 
-            <img id="3rd-question-8-img" src="3rd-street/8.jpeg" alt="Stephen Avenue Place">
+            <img id="question-8-img" class="question-image" src="./images/3rd-street/optimized/8.jpg" alt="Stephen Avenue Place">
 
-            <img id="3rd-question-9-img" src="3rd-street/9.jpeg" alt=" Devonian Gardens">
+            <img id="question-9-img" class="question-image" src="./images/3rd-street/optimized/9.jpg" alt=" Devonian Gardens">
 
-            <img id="3rd-question-10-img" src="3rd-street/10.jpeg" alt="Devonian Gardens">
-            -->
+            <img id="question-10-img" class="question-image" src="./images/3rd-street/optimized/10.jpg" alt="Devonian Gardens">
+            
             </figure>
         </section>
 
         <!-- Question 1 -->
-        <section class="question-container" id="3rd-question-1">
+        <section id="question-1" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">After passing through the Intact Place location, where can you find this large indoor mural created by Jordi Bonet?</h6>
@@ -69,8 +71,8 @@
             <button class="submit-answer" id="submit-answer-1">Submit</button>
         </section>
 
-        <!-- Question 2-10 
-        <section class="question-container" id="3rd-question-2">
+        
+        <section id="question-2" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Which building features this glass-covered walkway connected to Calgary’s +15 Skywalk network?</h6>
@@ -86,7 +88,7 @@
             <button class="submit-answer" id="submit-answer-2">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-3">
+        <section id="question-3" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Which building do you pass through to find the “World of Whisky" store?</h6>
@@ -102,7 +104,7 @@
             <button class="submit-answer" id="submit-answer-3">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-4">
+        <section id="question-4" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Which building contains this circular atrium connecting several +15 skywalk pathways?</h6>
@@ -118,7 +120,7 @@
             <button class="submit-answer" id="submit-answer-4">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-5">
+        <section id="question-5" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">In which building can you find this sculpture?</h6>
@@ -134,7 +136,7 @@
             <button class="submit-answer" id="submit-answer-5">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-6">
+        <section id="question-6" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Which building has this food court?</h6>
@@ -149,7 +151,7 @@
             <button class="submit-answer" id="submit-answer-6">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-7">
+        <section id="question-7" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Which building is home to this art gallery?</h6>
@@ -163,7 +165,7 @@
             <button class="submit-answer" id="submit-answer-7">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-8">
+        <section id="question-8" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What location do you need to pass through to see this art piece?</h6>
@@ -179,7 +181,7 @@
             <button class="submit-answer" id="submit-answer-8">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-9">
+        <section id="question-9" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What type of artwork is displayed in this collection at Devonian Gardens?</h6>
@@ -195,7 +197,7 @@
             <button class="submit-answer" id="submit-answer-9">Submit</button>
         </section>
 
-        <section class="question-container" id="3rd-question-10">
+        <section id="question-10" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Where can you find this turtle sculpture?</h6>
@@ -210,5 +212,7 @@
             </ul>
             <button class="submit-answer" id="submit-answer-10">Submit</button>
         </section>
-        -->
+        
     </main>
+
+    
