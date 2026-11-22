@@ -5,9 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const page = params.get("page");
     const station = params.get("station");
 
-    // ==========================================
-    // 1. QUESTION PAGE LOGIC
-    // ==========================================
+
     if (document.querySelector(".question-container")) {
         // Hide all questions
         document.querySelectorAll(".question-container").forEach(question => {
@@ -95,7 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const nextUncompleted = getNextUncompletedQuestion();
 
                     if (nextUncompleted === null) {
-                        window.location.href = "journey-completed.html";
+                        window.location.href = `journey-completed.html?station=${stationPage}`;
+
                     } else {
                         window.location.href =
                             `success.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&nextQ=${nextUncompleted}&station=${stationPage}`;
@@ -108,9 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 2. SUCCESS & FAIL PAGE BUTTONS
-    // ==========================================
+
     document.querySelectorAll("button, a").forEach(el => {
         const text = el.textContent.trim().toLowerCase();
 

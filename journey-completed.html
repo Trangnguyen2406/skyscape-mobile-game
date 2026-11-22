@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Journey Completed</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="icon" href="favicon.png">
-    <!-- head-end -->
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Completed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png">
+</head>
+<body>
     <header>
     </header>
     <main>
@@ -18,89 +17,149 @@
             display: flex;
             flex-direction: column;
             align-items: center;">
-            <figure style="margin:0;
-            ">
-                <img src="./images/badges/l1_rookie.svg" alt="Hero Image" style="
+            <figure style="margin:0;">
+                <img id="rank-badge" src="./images/badges/l1_rookie.svg" alt="Explorer Rank Badge"
+                style="
                 object-fit: cover;
                 position: relative;
                 overflow: hidden;
                 flex-shrink: 0;
                 aspect-ratio: 1/1;
                 width: 200px;
-                height: 200px;
-                ">
+                height: 200px;">
             </figure>
         </section>
+
         <section class="text-container">
-            
-            <h3 style="
-            display: inline-block;
-            text-align: center;"
-        >Congratulations!</h3>
-            <p style="
-            width: 100%;
-            position: relative;
-            text-align: center;
-                display: inline-block;">You completed the journey around City Hall station. Such a rocky explorer you are. Keep going with other stations!</p>
+            <h3 style="display: inline-block; text-align: center;">Congratulations!</h3>
+            <p id="journey-message" style="
+                width: 100%;
+                position: relative;
+                text-align: center;
+                display: inline-block;">
+                You completed the journey around City Hall station. Such a rookie explorer you are. Keep going with other stations!
+            </p>
         </section>
 
         <ul id="station-list" style="width: 100%; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
 
-            <section class="option" id="option-3rdstreet" href="#3rdstreet" >
-            <img src="1.avif" alt="City Hall" style="aspect-ratio: 1/1; width: auto; height: 64px; position: relative; border-radius: 8px;object-fit: cover;">
-            <div style="
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-                flex-grow: 1;
-            ">
-                <span style="
-                    font-size: 10px;
-                    line-height: 20px;
-                    color: #263d89;
-                    text-transform: uppercase;
-
-
-                ">
-                    Estimate 1hr to finish
-                </span>
-                <p style="
-                    text-align: left;
-                    font-size: 16px;
-                    font-weight: 600;
-                    margin: 0;
-                ">3rd Street Station</p>
-
-            </div>
-            <img class="vuesaxoutlinearrow-right-icon" alt="Arrow Icon" src="vuesax/outline/arrow-right.svg" style="width: 24px; height: 24px;">
-            </section>
-            <section class="option" id="option-8thstreet" href="#8thstreet">
-            <img src="1.avif" alt="City Hall" style="aspect-ratio: 1/1; width: auto; height: 64px; position: relative; border-radius: 8px;object-fit: cover;">
-            <div style="
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-                flex-grow: 1;
-            ">
-                <span style="
-                    font-size: 10px;
-                    line-height: 20px;
-                    color: #263d89;
-                    text-transform: uppercase;
-                ">
-                    Estimate 1hr to finish
-                </span>
-                <p style="
-                    text-align: left;
-                    font-size: 16px;
-                    font-weight: 600;
-                    margin: 0;
-                ">8th Street Station</p>
-
-            </div>
-            <img class="vuesaxoutlinearrow-right-icon" alt="Arrow Icon" src="vuesax/outline/arrow-right.svg" style="width: 24px; height: 24px;">
+            <!-- City Hall Station Card -->
+            <section class="option" id="option-cityhall" onclick="window.location.href='cityhall.html'" style="cursor: pointer;">
+                <img src="1.avif" alt="City Hall" style="aspect-ratio: 1/1; width: auto; height: 64px; position: relative; border-radius: 8px; object-fit: cover;">
+                <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1;">
+                    <span style="font-size: 10px; line-height: 20px; color: #263d89; text-transform: uppercase;">
+                        Estimate 1hr to finish
+                    </span>
+                    <p style="text-align: left; font-size: 16px; font-weight: 600; margin: 0;">City Hall Station</p>
+                </div>
+                <img class="vuesaxoutlinearrow-right-icon" alt="Arrow Icon" src="vuesax/outline/arrow-right.svg" style="width: 24px; height: 24px;">
             </section>
 
+            <!-- 3rd Street Station Card -->
+            <section class="option" id="option-3rdstreet" onclick="window.location.href='3rd-street.html'" style="cursor: pointer;">
+                <img src="1.avif" alt="3rd Street" style="aspect-ratio: 1/1; width: auto; height: 64px; position: relative; border-radius: 8px; object-fit: cover;">
+                <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1;">
+                    <span style="font-size: 10px; line-height: 20px; color: #263d89; text-transform: uppercase;">
+                        Estimate 1hr to finish
+                    </span>
+                    <p style="text-align: left; font-size: 16px; font-weight: 600; margin: 0;">3rd Street Station</p>
+                </div>
+                <img class="vuesaxoutlinearrow-right-icon" alt="Arrow Icon" src="vuesax/outline/arrow-right.svg" style="width: 24px; height: 24px;">
+            </section>
+
+            <!-- 8th Street Station Card -->
+            <section class="option" id="option-8thstreet" onclick="window.location.href='8th-street.html'" style="cursor: pointer;">
+                <img src="1.avif" alt="8th Street" style="aspect-ratio: 1/1; width: auto; height: 64px; position: relative; border-radius: 8px; object-fit: cover;">
+                <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1;">
+                    <span style="font-size: 10px; line-height: 20px; color: #263d89; text-transform: uppercase;">
+                        Estimate 1hr to finish
+                    </span>
+                    <p style="text-align: left; font-size: 16px; font-weight: 600; margin: 0;">8th Street Station</p>
+                </div>
+                <img class="vuesaxoutlinearrow-right-icon" alt="Arrow Icon" src="vuesax/outline/arrow-right.svg" style="width: 24px; height: 24px;">
+            </section>
 
         </ul>
     </main>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const stationConfig = [
+            { prefix: "cityhall-question.html", cardId: "option-cityhall" },
+            { prefix: "3rd-street-question.html", cardId: "option-3rdstreet" },
+            { prefix: "8th-street-question.html", cardId: "option-8thstreet" }
+        ];
+
+        // Helper: checks if all 10 questions for a station are "completed"
+        function isStationCompleted(stationPrefix) {
+            for (let i = 1; i <= 10; i++) {
+                if (localStorage.getItem(`${stationPrefix}-question-${i}`) !== "completed") {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Count completed stations and hide their cards so only unexplored ones show
+        let completedCount = 0;
+
+        stationConfig.forEach(station => {
+            const cardEl = document.getElementById(station.cardId);
+            if (isStationCompleted(station.prefix)) {
+                completedCount++;
+                if (cardEl) cardEl.style.display = "none"; // Hide finished station
+            } else {
+                if (cardEl) cardEl.style.display = "flex"; // Show remaining station
+            }
+        });
+
+        // Determine which station was just completed from URL or localStorage fallback
+        const params = new URLSearchParams(window.location.search);
+        const stationParam = (params.get("station") || localStorage.getItem("lastCompletedStation") || "").toLowerCase();
+
+        let stationName = "City Hall";
+        if (stationParam.includes("3rd")) {
+            stationName = "3rd Street";
+        } else if (stationParam.includes("8th")) {
+            stationName = "8th Street";
+        } else if (stationParam.includes("city")) {
+            stationName = "City Hall";
+        }
+
+        // Update rank badge image and rank title
+        const badgeImg = document.getElementById("rank-badge");
+        let rankTitle = "rookie";
+
+        if (completedCount >= 3) {
+            rankTitle = "expert";
+            if (badgeImg) {
+                badgeImg.src = "./images/badges/l3_expert.svg";
+                badgeImg.alt = "Level 3 Expert";
+            }
+        } else if (completedCount === 2) {
+            rankTitle = "explorer";
+            if (badgeImg) {
+                badgeImg.src = "./images/badges/l2_explorer.svg";
+                badgeImg.alt = "Level 2 Explorer";
+            }
+        } else {
+            rankTitle = "rookie";
+            if (badgeImg) {
+                badgeImg.src = "./images/badges/l1_rookie.svg";
+                badgeImg.alt = "Level 1 Rookie";
+            }
+        }
+
+        // Update the <p> message dynamically
+        const messageEl = document.getElementById("journey-message");
+        if (messageEl) {
+            if (completedCount >= 3) {
+                messageEl.textContent = `You completed the journey around ${stationName} station—and finished all stations! Such an ${rankTitle} explorer you are!`;
+            } else {
+                messageEl.textContent = `You completed the journey around ${stationName} station. Such a ${rankTitle} explorer you are. Keep going with other stations!`;
+            }
+        }
+    });
+    </script>
+</body>
+</html>
