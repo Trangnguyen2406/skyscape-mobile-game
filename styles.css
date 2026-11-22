@@ -253,6 +253,6 @@ span{
     border: 2px solid #263d89;
     background-color: #e8ecff;
 }
-.checkin-button.visited {
+.checkin-button.completed {
     background-color: #5CA4AC;
 }

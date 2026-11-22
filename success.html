@@ -46,45 +46,39 @@
             </button>
         </ul>
     </main>
-    <script>
+            <script>
         window.addEventListener("load", () => {
+            const sound = new Audio("./sounds/correct_answer.mp3");
+            sound.play().catch(() => {});
 
-    const sound = new Audio("./sounds/correct_answer.mp3");
-    sound.play();
+            const params = new URLSearchParams(window.location.search);
+            const page = params.get("page");
+            const nextQ = params.get("nextQ");
+            const station = params.get("station");
 
-    const params = new URLSearchParams(window.location.search);
+            const nextBtn = document.getElementById("next-question-button");
+            const exploreBtn = document.getElementById("explore-button");
 
-    const page = params.get("page");
-    const q = Number(params.get("q"));
-    const station = params.get("station");
-
-    // Explore Other Locations button
-    document.getElementById("explore-button")
-        .addEventListener("click", () => {
-            window.location.href = station;
-        });
-
-        const nextButton = document.getElementById("next-question-button");
-
-        if (nextButton) {
-
-            if (q === 10) {
-
-                nextButton.textContent = "Complete Journey";
-
-                nextButton.addEventListener("click", () => {
-                    window.location.href = "journey-completed.html";
-                });
-
-            } else {
-
-                nextButton.addEventListener("click", () => {
-                    window.location.href = `${page}?q=${q + 1}`;
-                });
-
+            // "Next Question" jumps to the next uncompleted question
+            if (nextBtn) {
+                if (nextQ) {
+                    nextBtn.addEventListener("click", () => {
+                        if (page) window.location.href = `${page}?q=${nextQ}`;
+                    });
+                } else {
+                    nextBtn.style.display = "none";
+                }
             }
-        }
-    });
+
+            // "Explore other locations" returns to the station checklist
+            if (exploreBtn) {
+                exploreBtn.addEventListener("click", () => {
+                    if (station) window.location.href = station;
+                });
+            }
+        });
     </script>
+
+
     </body>
     </html>
