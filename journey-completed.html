@@ -93,94 +93,99 @@
     </main>
 
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const stationConfig = [
-        { prefix: "cityhall-question.html", cardId: "option-cityhall" },
-        { prefix: "3rd-street-question.html", cardId: "option-3rdstreet" },
-        { prefix: "8th-street-question.html", cardId: "option-8thstreet" }
-    ];
-
-    // Helper: checks if every question for a station is marked "completed"
-    function isStationCompleted(stationPrefix) {
-        const total = Number(localStorage.getItem(`${stationPrefix}-total`)) || 10;
-        for (let i = 1; i <= total; i++) {
-            if (localStorage.getItem(`${stationPrefix}-question-${i}`) !== "completed") {
-                return false;
+        function getProgress(name) {
+            const match = document.cookie
+                .split("; ")
+                .find(row => row.startsWith(`${encodeURIComponent(name)}=`));
+            if (match) {
+                return decodeURIComponent(match.split("=")[1]);
             }
+            return localStorage.getItem(name);
         }
-        return true;
-    }
 
-    // Count completed stations and hide finished station cards
-    let completedCount = 0;
-    stationConfig.forEach(station => {
-        const cardEl = document.getElementById(station.cardId);
-        if (isStationCompleted(station.prefix)) {
-            completedCount++;
-            if (cardEl) cardEl.style.display = "none";
-        } else {
-            if (cardEl) cardEl.style.display = "flex";
-        }
-    });
+        document.addEventListener("DOMContentLoaded", () => {
+            const stationConfig = [
+                { prefix: "cityhall-question.html", cardId: "option-cityhall" },
+                { prefix: "3rd-street-question.html", cardId: "option-3rdstreet" },
+                { prefix: "8th-street-question.html", cardId: "option-8thstreet" }
+            ];
 
-    // Determine which station was just completed
-    const params = new URLSearchParams(window.location.search);
-    const stationParam = (params.get("station") || localStorage.getItem("lastCompletedStation") || "").toLowerCase();
+            // Check if all questions for a station are marked "completed"
+            function isStationCompleted(stationPrefix) {
+                const total = Number(getProgress(`${stationPrefix}-total`)) || 10;
+                for (let i = 1; i <= total; i++) {
+                    if (getProgress(`${stationPrefix}-question-${i}`) !== "completed") {
+                        return false;
+                    }
+                }
+                return true;
+            }
 
-    let stationName = "City Hall";
-    if (stationParam.includes("3rd")) {
-        stationName = "3rd Street";
-    } else if (stationParam.includes("8th")) {
-        stationName = "8th Street";
-    } else if (stationParam.includes("city")) {
-        stationName = "City Hall";
-    }
+            // Hide completed stations so only unvisited ones appear
+            let completedCount = 0;
+            stationConfig.forEach(station => {
+                const cardEl = document.getElementById(station.cardId);
+                if (isStationCompleted(station.prefix)) {
+                    completedCount++;
+                    if (cardEl) cardEl.style.setProperty("display", "none", "important");
+                } else {
+                    if (cardEl) cardEl.style.display = "flex";
+                }
+            });
 
-    // Update badge image, rank title, and "Visit Our Website" button
-    const badgeImg = document.getElementById("rank-badge");
-    const websiteBtn = document.getElementById("website-button");
-    let rankTitle = "rookie";
+            // Determine which station was just completed
+            const params = new URLSearchParams(window.location.search);
+            const stationParam = (params.get("station") || getProgress("lastCompletedStation") || "").toLowerCase();
 
-    if (completedCount >= 3) {
-        rankTitle = "expert";
-        if (badgeImg) {
-            badgeImg.src = "./images/badges/l3_expert.svg";
-            badgeImg.alt = "Level 3 Expert";
-        }
-        if (websiteBtn) {
-            websiteBtn.style.display = "flex";
-        }
-    } else if (completedCount === 2) {
-        rankTitle = "explorer";
-        if (badgeImg) {
-            badgeImg.src = "./images/badges/l2_explorer.svg";
-            badgeImg.alt = "Level 2 Explorer";
-        }
-        if (websiteBtn) {
-            websiteBtn.style.display = "none";
-        }
-    } else {
-        rankTitle = "rookie";
-        if (badgeImg) {
-            badgeImg.src = "./images/badges/l1_rookie.svg";
-            badgeImg.alt = "Level 1 Rookie";
-        }
-        if (websiteBtn) {
-            websiteBtn.style.display = "none";
-        }
-    }
+            let stationName = "City Hall";
+            if (stationParam.includes("3rd")) {
+                stationName = "3rd Street";
+            } else if (stationParam.includes("8th")) {
+                stationName = "8th Street";
+            } else if (stationParam.includes("city")) {
+                stationName = "City Hall";
+            }
 
-    // Update the <p> message dynamically
-    const messageEl = document.getElementById("journey-message");
-    if (messageEl) {
-        if (completedCount >= 3) {
-            messageEl.textContent = `You completed the journey around ${stationName} station—and finished all stations! Such an ${rankTitle} explorer you are!`;
-        } else {
-            messageEl.textContent = `You completed the journey around ${stationName} station. Such a ${rankTitle} explorer you are. Keep going with other stations!`;
-        }
-    }
-});
-</script>
+            // Update badge image, rank title, and "Visit Our Website" button
+            const badgeImg = document.getElementById("rank-badge");
+            const websiteBtn = document.getElementById("website-button");
+            let rankTitle = "rookie";
+
+            if (completedCount >= 3) {
+                rankTitle = "expert";
+                if (badgeImg) {
+                    badgeImg.src = "./images/badges/l3_expert.svg";
+                    badgeImg.alt = "Level 3 Expert";
+                }
+                if (websiteBtn) websiteBtn.style.display = "flex";
+            } else if (completedCount === 2) {
+                rankTitle = "explorer";
+                if (badgeImg) {
+                    badgeImg.src = "./images/badges/l2_explorer.svg";
+                    badgeImg.alt = "Level 2 Explorer";
+                }
+                if (websiteBtn) websiteBtn.style.display = "none";
+            } else {
+                rankTitle = "rookie";
+                if (badgeImg) {
+                    badgeImg.src = "./images/badges/l1_rookie.svg";
+                    badgeImg.alt = "Level 1 Rookie";
+                }
+                if (websiteBtn) websiteBtn.style.display = "none";
+            }
+
+            // Update the <p> message dynamically
+            const messageEl = document.getElementById("journey-message");
+            if (messageEl) {
+                if (completedCount >= 3) {
+                    messageEl.textContent = `You completed the journey around ${stationName} station—and finished all stations! Such an ${rankTitle} explorer you are!`;
+                } else {
+                    messageEl.textContent = `You completed the journey around ${stationName} station. Such a ${rankTitle} explorer you are. Keep going with other stations!`;
+                }
+            }
+        });
+        </script>
+
 
 </body>
 </html>
