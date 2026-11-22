@@ -79,17 +79,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Determine which station page and consistent page key to use
         let stationPage = "";
         let questionPage = window.location.pathname.split("/").pop();
+        const cleanQPath = decodeURIComponent(window.location.pathname).toLowerCase().replace(/[\s\-_]/g, "");
 
-        if (window.location.pathname.includes("cityhall") || window.location.pathname.includes("city-hall")) {
+        if (cleanQPath.includes("cityhall")) {
             stationPage = "cityhall.html";
             questionPage = "cityhall-question.html";
-        } else if (window.location.pathname.includes("3rd-street") || window.location.pathname.includes("3rdstreet")) {
+        } else if (cleanQPath.includes("3rdstreet")) {
             stationPage = "3rd-street.html";
             questionPage = "3rd-street-question.html";
-        } else if (window.location.pathname.includes("8th-street") || window.location.pathname.includes("8thstreet")) {
+        } else if (cleanQPath.includes("8thstreet")) {
             stationPage = "8th-street.html";
             questionPage = "8th-street-question.html";
         }
+
 
         // Count total questions dynamically (defaults to 10 if none found)
         const totalQuestions = document.querySelectorAll(".question-container").length || 10;
@@ -135,36 +137,73 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Success aand Fail Button
-    document.querySelectorAll("button, a").forEach(el => {
-        const text = el.textContent.trim().toLowerCase();
+        // Success aand Fail Button
+        document.querySelectorAll("button, a").forEach(el => {
+            const text = el.textContent.trim().toLowerCase();
 
-        // "Next Question" on success.html (jumps to the next uncompleted question)
-        if (text === "next question") {
-            if (!nextQ) {
-                el.style.display = "none";
-            } else {
+            // "Next Question" on success.html (jumps to the next uncompleted question)
+            if (text === "next question") {
+                if (!nextQ) {
+                    el.style.display = "none";
+                } else {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        if (page) window.location.href = `${page}?q=${nextQ}`;
+                    });
+                }
+            }
+
+            // "Try Again" on fail.html (returns to the exact same question)
+            if (text === "try again") {
                 el.addEventListener("click", (e) => {
                     e.preventDefault();
-                    if (page) window.location.href = `${page}?q=${nextQ}`;
+                    if (page) window.location.href = `${page}?q=${q}`;
                 });
             }
+
+            // "Explore other locations" on both success.html and fail.html
+            if (text === "explore other locations") {
+                el.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (station) window.location.href = station;
+                });
+            }
+        });
+
+            // Station Page Logic (INSIDE DOMContentLoaded so it finds .location-card)
+    if (document.querySelector(".location-card")) {
+        let currentQuestionPage = "";
+        // Normalize path: lowercase and remove spaces, %20, dashes, and underscores
+        const cleanPath = decodeURIComponent(window.location.pathname).toLowerCase().replace(/[\s\-_]/g, "");
+
+        if (cleanPath.includes("cityhall")) {
+            currentQuestionPage = "cityhall-question.html";
+        } else if (cleanPath.includes("3rdstreet")) {
+            currentQuestionPage = "3rd-street-question.html";
+        } else if (cleanPath.includes("8thstreet")) {
+            currentQuestionPage = "8th-street-question.html";
         }
 
-        // "Try Again" on fail.html (returns to the exact same question)
-        if (text === "try again") {
-            el.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (page) window.location.href = `${page}?q=${q}`;
-            });
-        }
+        document.querySelectorAll(".location-card").forEach((card, index) => {
+            const btn = card.querySelector(".checkin-button");
+            // Check href on the button itself OR on a parent <a> tag
+            const linkEl = btn ? (btn.tagName === "A" ? btn : btn.closest("a")) : card.querySelector("a");
+            let qNum = index + 1;
 
-        // "Explore other locations" on both success.html and fail.html
-        if (text === "explore other locations") {
-            el.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (station) window.location.href = station;
-            });
-        }
+            if (linkEl && linkEl.getAttribute("href")) {
+                const url = new URL(linkEl.getAttribute("href"), window.location.href);
+                if (url.searchParams.get("q")) {
+                    qNum = url.searchParams.get("q");
+                }
+            }
+
+            const status = getProgress(`${currentQuestionPage}-question-${qNum}`);
+            console.log(`Checking: ${currentQuestionPage}-question-${qNum} ->`, status);
+
+            if (status === "completed") {
+                card.classList.add("completed");
+                if (btn) btn.classList.add("completed");
+            }
+        });
+    }
     });
-});
