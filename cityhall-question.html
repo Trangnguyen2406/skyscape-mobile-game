@@ -7,16 +7,19 @@
 		<title>Question 1</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="favicon.png">
+        <script src="script.js" defer></script>
+
     <!-- head-end -->
   </head>
   <body>
     <header>
-        <img src="vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px;">
+        <a href="cityhall.html">
+        <img src="./images/vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px;"></a>
         <!--This text should be changed to reflect the current question number-->
         <h6 style="
                 display: inline-block;
                 text-align: center;">Question 1</h6>
-        <img src="vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px; opacity: 0">
+        <img src="./images/vuesax/outline/arrow-left.svg" alt="Arrow Icon" style="width: 24px; height: 24px; opacity: 0">
         
     </header>
 
@@ -28,31 +31,31 @@
                 position: relative;
                 overflow: hidden;">
             <!--This image should be changed to reflect the current question number-->
-            <img id="ch-question-1-img" src="./images/city_hall/1.jpg"  alt="Calgary Municipal Building">
+            <img id="question-1-img" class="question-image" src="./images/city_hall/1.jpg"  alt="Calgary Municipal Building">
 
-            <img id="ch-question-2-img" src="City-Hall/2.jpg" alt="Calgary Municipal Building">
+            <img id="question-2-img" class="question-image" src="./images/city_hall/2.jpg" alt="Calgary Municipal Building">
 
-            <img id="ch-question-3-img" src="City-Hall/3.jpg" alt="Calgary Municipal Building">
+            <img id="question-3-img" class="question-image" src="./images/city_hall/3.jpg" alt="Calgary Municipal Building">
 
-            <img id="ch-question-4-img" src="City-Hall/4.jpg" alt="Art Commons">
+            <img id="question-4-img" class="question-image" src="./images/city_hall/4.jpg"  alt="Art Commons">
 
-            <img id="ch-question-5-img" src="City-Hall/5.jpg" alt="Art Commons">
+            <img id="question-5-img" class="question-image" src="./images/city_hall/5.jpg"  alt="Art Commons">
 
-            <img id="ch-question-6-img" src="City-Hall/6.jpg" alt="tbd">
+            <img id="question-6-img" class="question-image" src="./images/city_hall/6.jpg"  alt="tbd">
 
-            <img id="ch-question-7-img" src="City-Hall/7.jpg" alt="Tower Center">
+            <img id="question-7-img" class="question-image" src="./images/city_hall/7.jpg"  alt="Tower Center">
 
-            <img id="ch-question-8-img" src="City-Hall/8.jpg" alt="Tower Center">
+            <img id="question-8-img" class="question-image" src="./images/city_hall/8.jpg"  alt="Tower Center">
 
-            <img id="ch-question-9-img" src="City-Hall/9.jpg" alt="Landmark">
+            <img id="question-9-img" class="question-image" src="./images/city_hall/9.jpg"  alt="Landmark">
 
-            <img id="ch-question-10-img" src="City-Hall/10.jpg" alt="Calgary Tower">
-            -->
+            <img id="question-10-img" class="question-image" src="./images/city_hall/10.jpg"  alt="Calgary Tower">
+    
             </figure>
         </section>
 
         <!-- Question 1 -->
-        <section class="question-container" id="ch-question-1">
+        <section id="question-1" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Aside from the lion, what else is the animal outside the calgary municipal building?</h6>
@@ -65,10 +68,11 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-1">Submit</button>
         </section>
 
-        <!-- Question 2-10 
-        <section class="question-container" id="ch-question-2">
+        
+        <section id="question-2" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Based on the Information wall, when did Calgary became a City?</h6>
@@ -81,9 +85,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-2">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-3">
+        <section id="question-3" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Based on the Plith Label, when did the Calgarians faced one of the greatest challenges in the history?</h6>
@@ -96,9 +101,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-3">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-4">
+        <section id="question-4" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What Building can you find this colorful Bridge?</h6>
@@ -111,9 +117,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-4">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-5">
+        <section id="question-5" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What is the name of this Art Exhibition?</h6>
@@ -126,9 +133,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-5">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-6">
+        <section id="question-6" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Where can you find this small tree?</h6>
@@ -141,9 +149,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-6">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-7">
+        <section id="question-7" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What is the name of this art?</h6>
@@ -156,9 +165,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-7">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-8">
+        <section id="question-8" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What is the award given to Colonel Walker?</h6>
@@ -171,9 +181,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-8">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-9">
+        <section id="question-9" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">Where can you find this Landmark?</h6>
@@ -186,9 +197,10 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-9">Submit</button>
         </section>
 
-        <section class="question-container" id="ch-question-10">
+        <section id="question-10" class="question-container">
             <h6 class="question" style="
                     text-align: center;
                     display: inline-block;">What Skybridge should you go to get this view of Calgary Tower?</h6>
@@ -201,6 +213,7 @@
                 </button>
 
             </ul>
+            <button class="submit-answer" id="submit-answer-10">Submit</button>
         </section>
-        -->
+        
     </main>
