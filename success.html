@@ -37,15 +37,47 @@
         </section>
 
         <ul id="buttons" style="width: 100%; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
-            <button onclick="location.href='index.html'" class="primary-button">Explore other locations
+            <button id="next-question-button" class="primary-button">
+                Next Question
+            </button>
+
+            <button onclick="location.href='index.html'" class="secondary-button">
+                Explore other locations
             </button>
         </ul>
     </main>
     <script>
-    window.addEventListener("load", () => {
-        const sound = new Audio("./sounds/correct_answer.mp3");
-        sound.play();
-    });
-    </script>
+        window.addEventListener("load", () => {
+
+            const sound = new Audio("./sounds/correct_answer.mp3");
+            sound.play();
+
+            const params = new URLSearchParams(window.location.search);
+
+            const page = params.get("page");
+            const q = Number(params.get("q"));
+
+            const nextButton = document.getElementById("next-question-button");
+
+            if (nextButton) {
+
+                if (q === 10) {
+
+                    nextButton.textContent = "Complete Journey";
+
+                    nextButton.addEventListener("click", () => {
+                        window.location.href = "journey-completed.html";
+                    });
+
+                } else {
+
+                    nextButton.addEventListener("click", () => {
+                        window.location.href = `${page}?q=${q + 1}`;
+                    });
+
+                }
+            }
+        });
+        </script>
     </body>
     </html>

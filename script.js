@@ -57,7 +57,8 @@ document.querySelectorAll(".submit-answer").forEach(button => {
             if (q === "10") {
                 window.location.href = "journey-completed.html";
             } else {
-                window.location.href = "success.html";
+                window.location.href =
+                `success.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}`;
             }
 
         } else {
