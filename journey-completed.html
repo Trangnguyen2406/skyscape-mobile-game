@@ -105,10 +105,11 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const stationConfig = [
-                { prefix: "cityhall-question.html", cardId: "option-cityhall" },
-                { prefix: "3rd-street-question.html", cardId: "option-3rdstreet" },
-                { prefix: "8th-street-question.html", cardId: "option-8thstreet" }
+                { prefix: "cityhall", cardId: "option-cityhall" },
+                { prefix: "3rdstreet", cardId: "option-3rdstreet" },
+                { prefix: "8thstreet", cardId: "option-8thstreet" }
             ];
+
 
             // Check if all questions for a station are marked "completed"
             function isStationCompleted(stationPrefix) {
