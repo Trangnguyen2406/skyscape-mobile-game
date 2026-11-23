@@ -274,36 +274,6 @@
         <img src="./images/footer.png" alt="Logo" style="width: 100px; height: auto; cursor: pointer;">
     </a>
     </footer>
-    <script>
-        // Reads cookie first, falls back to localStorage if testing via file://
-        function getProgress(name) {
-            const match = document.cookie
-                .split("; ")
-                .find(row => row.startsWith(`${encodeURIComponent(name)}=`));
-            if (match) {
-                return decodeURIComponent(match.split("="));
-            }
-            return localStorage.getItem(name);
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            for (let i = 1; i <= 10; i++) {
-                const button = document.getElementById(`checkin-${i}`);
-
-                if (button && getProgress(`cityhall-question.html-question-${i}`) === "completed") {
-                    button.classList.add("completed");
-                    button.style.display = "none"; // Hide "Check In" button
-
-                    // Show the matching "Checked-in" badge right below the button
-                    const card = button.closest(".location-card");
-                    const statusBadge = card ? card.querySelector(".checkin-status") : null;
-                    if (statusBadge) {
-                        statusBadge.style.display = "flex";
-                    }
-                }
-            }
-        });
-        </script>
-
+    <script src="script.js"></script>
     </body>
     </html>

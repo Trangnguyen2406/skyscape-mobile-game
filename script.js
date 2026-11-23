@@ -1,4 +1,4 @@
-//Cookie saves upto 30days
+// Cookie saves up to 30 days
 function setProgress(name, value, days = 30) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
     document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
@@ -25,12 +25,32 @@ function clearAllProgress() {
     localStorage.clear();
 }
 
+// Shared helper so saving and loading ALWAYS use the exact same station key
+function getStationInfo(path) {
+    const clean = decodeURIComponent(path).toLowerCase().replace(/[\s\-_]/g, "");
+
+    if (clean.includes("cityhall")) {
+        return { key: "cityhall", stationPage: "cityhall.html", questionPage: "cityhall-question.html" };
+    }
+    if (clean.includes("3rdstreet") || clean.includes("3rd")) {
+        return { key: "3rdstreet", stationPage: "3rd-street.html", questionPage: "3rd-street-question.html" };
+    }
+    if (clean.includes("8thstreet") || clean.includes("8th")) {
+        return { key: "8thstreet", stationPage: "8th-street.html", questionPage: "8th-street-question.html" };
+    }
+
+    const fallbackFile = path.split("/").pop() || "default";
+    return { key: "default", stationPage: fallbackFile, questionPage: fallbackFile };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const q = Number(params.get("q")) || 1;
     const nextQ = params.get("nextQ");
     const page = params.get("page");
     const station = params.get("station");
+
+    const stationInfo = getStationInfo(window.location.pathname);
 
     // Question Logic
     if (document.querySelector(".question-container")) {
@@ -76,30 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Determine which station page and consistent page key to use
-        let stationPage = "";
-        let questionPage = window.location.pathname.split("/").pop();
-        const cleanQPath = decodeURIComponent(window.location.pathname).toLowerCase().replace(/[\s\-_]/g, "");
-
-        if (cleanQPath.includes("cityhall")) {
-            stationPage = "cityhall.html";
-            questionPage = "cityhall-question.html";
-        } else if (cleanQPath.includes("3rdstreet")) {
-            stationPage = "3rd-street.html";
-            questionPage = "3rd-street-question.html";
-        } else if (cleanQPath.includes("8thstreet")) {
-            stationPage = "8th-street.html";
-            questionPage = "8th-street-question.html";
-        }
-
-
         // Count total questions dynamically (defaults to 10 if none found)
         const totalQuestions = document.querySelectorAll(".question-container").length || 10;
 
-        // Find the next uncompleted question 
+        // Find the next uncompleted question
         function getNextUncompletedQuestion() {
             for (let i = 1; i <= totalQuestions; i++) {
-                if (getProgress(`${questionPage}-question-${i}`) !== "completed") {
+                if (getProgress(`${stationInfo.key}-question-${i}`) !== "completed") {
                     return i;
                 }
             }
@@ -115,78 +118,65 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (selectedAnswer.classList.contains("correct-answer")) {
-                    // Save completed question, total count, and latest station in a 30-day cookie
-                    setProgress(`${questionPage}-question-${q}`, "completed");
-                    setProgress(`${questionPage}-total`, totalQuestions);
-                    setProgress("lastCompletedStation", stationPage);
+                    // Save completed question, total count, and latest station
+                    setProgress(`${stationInfo.key}-question-${q}`, "completed");
+                    setProgress(`${stationInfo.key}-total`, totalQuestions);
+                    setProgress("lastCompletedStation", stationInfo.stationPage);
 
                     // Check if there is another uncompleted question left
                     const nextUncompleted = getNextUncompletedQuestion();
 
                     if (nextUncompleted === null) {
-                        window.location.href = `journey-completed.html?station=${stationPage}`;
+                        window.location.href = `journey-completed.html?station=${stationInfo.stationPage}`;
                     } else {
                         window.location.href =
-                            `success.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&nextQ=${nextUncompleted}&station=${stationPage}`;
+                            `success.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&nextQ=${nextUncompleted}&station=${stationInfo.stationPage}`;
                     }
                 } else {
                     window.location.href =
-                        `fail.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&station=${stationPage}`;
+                        `fail.html?page=${encodeURIComponent(window.location.pathname)}&q=${q}&station=${stationInfo.stationPage}`;
                 }
             });
         });
     }
 
-        // Success aand Fail Button
-        document.querySelectorAll("button, a").forEach(el => {
-            const text = el.textContent.trim().toLowerCase();
+    // Success and Fail Buttons
+    document.querySelectorAll("button, a").forEach(el => {
+        const text = el.textContent.trim().toLowerCase();
 
-            // "Next Question" on success.html (jumps to the next uncompleted question)
-            if (text === "next question") {
-                if (!nextQ) {
-                    el.style.display = "none";
-                } else {
-                    el.addEventListener("click", (e) => {
-                        e.preventDefault();
-                        if (page) window.location.href = `${page}?q=${nextQ}`;
-                    });
-                }
-            }
-
-            // "Try Again" on fail.html (returns to the exact same question)
-            if (text === "try again") {
+        // "Next Question" on success.html (jumps to the next uncompleted question)
+        if (text === "next question") {
+            if (!nextQ) {
+                el.style.display = "none";
+            } else {
                 el.addEventListener("click", (e) => {
                     e.preventDefault();
-                    if (page) window.location.href = `${page}?q=${q}`;
+                    if (page) window.location.href = `${page}?q=${nextQ}`;
                 });
             }
-
-            // "Explore other locations" on both success.html and fail.html
-            if (text === "explore other locations") {
-                el.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    if (station) window.location.href = station;
-                });
-            }
-        });
-
-            // Station Page Logic (INSIDE DOMContentLoaded so it finds .location-card)
-    if (document.querySelector(".location-card")) {
-        let currentQuestionPage = "";
-        // Normalize path: lowercase and remove spaces, %20, dashes, and underscores
-        const cleanPath = decodeURIComponent(window.location.pathname).toLowerCase().replace(/[\s\-_]/g, "");
-
-        if (cleanPath.includes("cityhall")) {
-            currentQuestionPage = "cityhall-question.html";
-        } else if (cleanPath.includes("3rdstreet")) {
-            currentQuestionPage = "3rd-street-question.html";
-        } else if (cleanPath.includes("8thstreet")) {
-            currentQuestionPage = "8th-street-question.html";
         }
 
+        // "Try Again" on fail.html (returns to the exact same question)
+        if (text === "try again") {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (page) window.location.href = `${page}?q=${q}`;
+            });
+        }
+
+        // "Explore other locations" on both success.html and fail.html
+        if (text === "explore other locations") {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (station) window.location.href = station;
+            });
+        }
+    });
+
+        // Station Page Logic
+    if (document.querySelector(".location-card")) {
         document.querySelectorAll(".location-card").forEach((card, index) => {
-            const btn = card.querySelector(".checkin-button");
-            // Check href on the button itself OR on a parent <a> tag
+            const btn = card.querySelector(".checkin-button, .primary-button, button, a");
             const linkEl = btn ? (btn.tagName === "A" ? btn : btn.closest("a")) : card.querySelector("a");
             let qNum = index + 1;
 
@@ -197,13 +187,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            const status = getProgress(`${currentQuestionPage}-question-${qNum}`);
-            console.log(`Checking: ${currentQuestionPage}-question-${qNum} ->`, status);
+            const status = getProgress(`${stationInfo.key}-question-${qNum}`);
 
             if (status === "completed") {
                 card.classList.add("completed");
-                if (btn) btn.classList.add("completed");
+                if (btn) {
+                    btn.classList.add("completed");
+                }
+                const statusBadge = card.querySelector(".checkin-status");
+                if (statusBadge) {
+                    statusBadge.style.display = "flex";
+                }
             }
         });
     }
-    });
+});
